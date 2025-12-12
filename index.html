@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tài Khoản Dùng Thử - Nguyên Dương Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Be Vietnam Pro", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffe6fa, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4b5563;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 26px;
+      padding: 28px 24px 24px;
+      box-shadow:
+        0 18px 46px rgba(244, 114, 182, 0.35),
+        0 0 0 1px rgba(248, 187, 208, 0.7);
+      backdrop-filter: blur(18px);
+      color: #4b5563;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background:
+        radial-gradient(circle at top right, rgba(244, 114, 182, 0.15), transparent 65%),
+        radial-gradient(circle at bottom left, rgba(251, 207, 232, 0.6), transparent 60%);
+      pointer-events: none;
+    }
+
+    .card-headline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(74, 222, 128, 0.8);
+      color: #15803d;
+      background: rgba(240, 253, 244, 0.95);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(187, 247, 208, 0.9);
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #be185d;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .account-section {
+      position: relative;
+      margin-top: 18px;
+      padding: 14px 14px 10px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffbfd8, #ffe6fa);
+      box-shadow: 0 12px 32px rgba(244, 114, 182, 0.4);
+      border: 1px solid rgba(244, 114, 182, 0.7);
+    }
+
+    .account-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .account-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #9f1239;
+    }
+
+    .shop-label {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(240, 253, 244, 0.96);
+      color: #15803d;
+      border: 1px solid rgba(134, 239, 172, 0.9);
+    }
+
+    .field {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 9px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(248, 187, 208, 0.9);
+      margin-bottom: 6px;
+    }
+
+    .field-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fb7185;
+      flex-shrink: 0;
+    }
+
+    .field-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111827;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .masked {
+      -webkit-text-security: disc;
+      text-security: disc;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+      color: #fdf2f8;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.18s ease;
+      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.45);
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(244, 114, 182, 0.55);
+      filter: brightness(1.05);
+    }
+
+    .copy-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 14px rgba(244, 114, 182, 0.45);
+    }
+
+    .copy-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(244, 114, 182, 0.8);
+      background: rgba(255, 255, 255, 0.95);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #db2777;
+    }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #9f1239;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0.9;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fb7185;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 11px;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    .footer span {
+      color: #ec4899;
+      font-weight: 600;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(248, 250, 252, 0.96);
+      color: #9f1239;
+      border: 1px solid rgba(248, 187, 208, 0.9);
+      box-shadow: 0 12px 30px rgba(244, 114, 182, 0.4);
+      display: none;
+      align-items: center;
+      gap: 8px;
+      z-index: 50;
+    }
+
+    .toast-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fb7185;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 22px 18px 18px;
+        border-radius: 20px;
+      }
+      h1 {
+        font-size: 18px;
+      }
+      .account-section {
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <div class="card-headline">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Tài Khoản Dùng Thử
+        </div>
+        <h1>Nguyên Dương Shop</h1>
+        <p class="subtitle">Đăng nhập nhanh bằng tài khoản demo để trải nghiệm giao diện & tính năng.</p>
+      </div>
+
+      <div class="account-section">
+        <div class="account-header">
+          <div class="account-title">Thông tin đăng nhập mẫu</div>
+          <div class="shop-label">Live</div>
+        </div>
+
+        <!-- Username -->
+        <div class="field">
+          <div class="field-label">Tài khoản</div>
+          <div class="field-value masked" data-real="nd.lt@hotmail.com">
+            nd.lt@hotmail.com
+          </div>
+          <button class="copy-btn" data-type="data">
+            <span class="copy-icon">⧉</span>
+            Sao chép
+          </button>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <div class="field-label">Mật khẩu</div>
+          <div class="field-value masked" data-real="Duongcanva0389773782">
+            Duongcanva0389773782
+          </div>
+          <button class="copy-btn" data-type="data">
+            <span class="copy-icon">⧉</span>
+            Sao chép
+          </button>
+        </div>
+
+        <div class="hint">
+          <span class="dot"></span>
+          Vui lòng đăng nhập bằng mật khẩu, không lấy mã qua mail.
+        </div>
+      </div>
+
+      <div class="footer">
+        © <span>Nguyên Dương Shop</span> · tài khoản demo cho khách dùng thử.
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span class="toast-dot"></span>
+    <span id="toast-text">Đã sao chép!</span>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".copy-btn");
+    const toast = document.getElementById("toast");
+    const toastText = document.getElementById("toast-text");
+    let toastTimeout;
+
+    function showToast(message) {
+      toastText.textContent = message;
+      toast.style.display = "flex";
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.style.display = "none";
+      }, 1800);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const type = btn.getAttribute("data-type");
+        let text = "";
+
+        if (type === "data") {
+          const field = btn.previousElementSibling;
+          text = field.getAttribute("data-real") || "";
+        } else {
+          const targetId = btn.getAttribute("data-target");
+          const el = document.getElementById(targetId);
+          text = el ? el.textContent.trim() : "";
+        }
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const temp = document.createElement("textarea");
+            temp.value = text;
+            temp.style.position = "fixed";
+            temp.style.left = "-9999px";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+          }
+          // luôn báo "Đã sao chép" kể cả fallback
+          showToast("Đã sao chép");
+        } catch (e) {
+          // cũng báo "Đã sao chép" theo yêu cầu
+          showToast("Đã sao chép");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
